@@ -1,3 +1,8 @@
+//TODO: pull class data from JSON file instead of hardcoding it here.
+//This includes the health, power, dodge chance, and move details.
+
+//The text will be pulled from anothe JSON file for language support
+
 static class ClassBuilder
 {
     public static Player CreateWarrior(string name)
