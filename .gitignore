@@ -1,0 +1,40 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# Debugger / profiling artifacts
+*.pdb
+*.mdb
+*.cache
+
+# Logs
+*.log
+
+# NuGet
+packages/
+*.nupkg
+
+# Publish output
+publish/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# assignment
+docs
