@@ -11,13 +11,13 @@ abstract public class EntityBuilder<TBuilder, TEntity>
     }
     public TBuilder SetName(string name)
     {
-        entity.Name = name;
+        entity.name = name;
         return (TBuilder)this;
     }
     public TBuilder SetHealth(int maxHealth)
     {
-        entity.MaxHealth = maxHealth;
-        entity.Health = maxHealth;
+        entity.maxHealth = maxHealth;
+        entity.health = maxHealth;
         return (TBuilder)this;
     }
     public TBuilder SetPower(int power)

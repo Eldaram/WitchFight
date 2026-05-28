@@ -29,11 +29,11 @@ static class MoveLibrary
 
     public static void HealStandard(Entity user)
     {
-        user.Health = Math.Min(user.Health + HEAL_AMOUNT, user.MaxHealth);
+        user.health = Math.Min(user.health + HEAL_AMOUNT, user.maxHealth);
     }
 
     public static void HealCustom(int amount, Entity user)
     {
-        user.Health = Math.Min(user.Health + amount, user.MaxHealth);
+        user.health = Math.Min(user.health + amount, user.maxHealth);
     }
 }

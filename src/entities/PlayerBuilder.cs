@@ -36,7 +36,7 @@ public class PlayerBuilder : EntityBuilder<PlayerBuilder, Player>
 
     public PlayerBuilder SetClass(string className)
     {
-        entity.Class = className;
+        entity.playerClass = className;
         return this;
     }
 }
