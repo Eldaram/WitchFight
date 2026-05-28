@@ -34,7 +34,7 @@ abstract public class EntityBuilder<TBuilder, TEntity>
     public TBuilder SetStandardAttack()
     {
         return SetAttack(new Move(
-            "Basic Attack", //TODO: Link to JSON text
+            "attack",
             MoveLibrary.BasicAttack
         ));
     }

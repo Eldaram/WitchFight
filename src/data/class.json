@@ -1,0 +1,23 @@
+{
+  "warrior": {
+    "health": 120,
+    "power": 18,
+    "dodgeChance": 0.1,
+    "specialMoveName": "warriorSpecial",
+    "specialMoveCooldown": 2
+  },
+  "mage": {
+    "health": 80,
+    "power": 12,
+    "dodgeChance": 0.05,
+    "specialMoveName": "mageSpecial",
+    "specialMoveCooldown": 3
+  },
+  "rogue": {
+    "health": 90,
+    "power": 14,
+    "dodgeChance": 0.25,
+    "specialMoveName": "rogueSpecial",
+    "specialMoveCooldown": 2
+  }
+}

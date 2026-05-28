@@ -15,7 +15,9 @@ public class Monster : Entity
         {
             var target = possibleTargets.First();
 
-            bool hasDied = dammage(target);
+            Attack?.Use(this, target);
+
+            bool hasDied = target.health <= 0;
             if (hasDied)
                 return target;
         }

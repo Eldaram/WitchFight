@@ -1,61 +1,48 @@
-//TODO: pull class data from JSON file instead of hardcoding it here.
-//This includes the health, power, dodge chance, and move details.
-
-//The text will be pulled from anothe JSON file for language support
-
 static class ClassBuilder
 {
-    public static Player CreateWarrior(string name)
+    private static Player CreateFromClassData(string classKey, string name)
     {
+        ClassJsonManager classJsonManager = ClassJsonManager.Instance;
+
         return new PlayerBuilder()
             .SetName(name)
-            .SetClass("Warrior") //TODO: Link to JSON text
-            .SetHealth(120)
-            .SetPower(18)
-            .SetDodgeChance(0.1)
+            .SetClass(classKey)
+            .SetHealth(classJsonManager.GetInt(classKey, "health"))
+            .SetPower(classJsonManager.GetInt(classKey, "power"))
+            .SetDodgeChance(classJsonManager.GetDouble(classKey, "dodgeChance"))
             .SetStandardAttack()
             .SetStandardHealMove()
             .SetSpecialMove(new Move(
-                "Warrior Special", //TODO: Link to JSON text
-                MoveLibrary.WarriorSpecial,
-                cooldown: 2
+                classJsonManager.GetString(classKey, "specialMoveName"),
+                GetSpecialMoveAction(classKey),
+                cooldown: classJsonManager.GetInt(classKey, "specialMoveCooldown")
             ))
             .GetResult();
+    }
+
+    private static Action<Entity, Entity?> GetSpecialMoveAction(string classKey)
+    {
+        return classKey switch
+        {
+            "warrior" => MoveLibrary.WarriorSpecial,
+            "mage" => MoveLibrary.MageSpecial,
+            "rogue" => MoveLibrary.RogueSpecial,
+            _ => throw new Exception($"Unknown class {classKey}")
+        };
+    }
+
+    public static Player CreateWarrior(string name)
+    {
+        return CreateFromClassData("warrior", name);
     }
 
     public static Player CreateMage(string name)
     {
-        return new PlayerBuilder()
-            .SetName(name)
-            .SetClass("Mage") //TODO: Link to JSON text
-            .SetHealth(80)
-            .SetPower(12)
-            .SetDodgeChance(0.05)
-            .SetStandardAttack()
-            .SetStandardHealMove()
-            .SetSpecialMove(new Move(
-                "Mage Special", //TODO: Link to JSON text
-                MoveLibrary.MageSpecial,
-                cooldown: 3
-            ))
-            .GetResult();
+        return CreateFromClassData("mage", name);
     }
 
     public static Player CreateRogue(string name)
     {
-        return new PlayerBuilder()
-            .SetName(name)
-            .SetClass("Rogue") //TODO: Link to JSON text
-            .SetHealth(90)
-            .SetPower(14)
-            .SetDodgeChance(0.25)
-            .SetStandardAttack()
-            .SetStandardHealMove()
-            .SetSpecialMove(new Move(
-                "Rogue Special", //TODO: Link to JSON text
-                MoveLibrary.RogueSpecial,
-                cooldown: 2
-            ))
-            .GetResult();
+        return CreateFromClassData("rogue", name);
     }
 }

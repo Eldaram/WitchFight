@@ -20,7 +20,7 @@ public class PlayerBuilder : EntityBuilder<PlayerBuilder, Player>
     public PlayerBuilder SetStandardHealMove()
     {
         SetHealMove(new Move(
-            "Heal", //TODO: Link to JSON text
+            "heal",
             (user, _) => MoveLibrary.HealStandard(user),
             maxUses: 3,
             isSelfTargeting: true

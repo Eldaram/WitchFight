@@ -1,5 +1,12 @@
 public class GameEngine : IGameEngine
 {
+    private static Dictionary<string, Func<string, Player>> classFactory = new Dictionary<string, Func<string, Player>>()
+    {
+        { "warrior", (name) => ClassBuilder.CreateWarrior(name) },
+        { "mage", (name) => ClassBuilder.CreateMage(name) },
+        { "rogue", (name) => ClassBuilder.CreateRogue(name) }
+    };
+
     public IGameEngine currentTurn;
     public IGameEngine nextTurns = null!; 
     public List<Monster> monsters;
@@ -10,8 +17,12 @@ public class GameEngine : IGameEngine
     public int turnIndex = 0;
     public int waveNumber = 0;
     public bool playerLost = false;
+    public TerminalManager terminal = TerminalManager.Instance;
+
     public GameEngine(Wave wave)
     {
+        terminal.PrintText("welcomeMessage");
+
         initialWave = wave;
         InitGame();
         currentTurn = nextTurns;
@@ -36,17 +47,23 @@ public class GameEngine : IGameEngine
 
     public void EndWave(bool isPlayerDead)
     {
-        currentTurn = new EndingWave(this);
+        nextTurns = new EndingWave(this);
         playerLost = isPlayerDead;
     }
 
     public void InitGame()
     {
-        //Launch the dialog for the game
         playerLost = false;
-        player = new Player(); //Init a new player here via builder... The builder should ask the user for name and class.
+        PlayerConfiguration();
         currentWave = initialWave;
 
         nextTurns = new BeginWave(this, currentWave);
+    }
+
+    private void PlayerConfiguration()
+    {
+        string name = terminal.AskString("namePrompt");
+        int classChoice = terminal.AskOption("classPrompt", classFactory.Keys.ToList());
+        player = classFactory.Values.ElementAt(classChoice)(name);
     }
 }

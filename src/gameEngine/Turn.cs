@@ -5,6 +5,7 @@
 
 public class Turn : IGameEngine
 {
+    public TerminalManager terminal = TerminalManager.Instance;
     public GameEngine gameEngine;
     public Entity entity;
 
@@ -19,7 +20,11 @@ public class Turn : IGameEngine
         Entity? killedEntity;
 
         if (entity is Player)
+        {
+            PrintGameState();
+            ((Player)entity).UpdateCooldowns();
             killedEntity = entity.ChooseAction(gameEngine.monsters);
+        }
         else
             killedEntity = entity.ChooseAction(new List<Entity> { gameEngine.player });
 
@@ -56,4 +61,16 @@ public class Turn : IGameEngine
             gameEngine.currentMonsterIndex = 0;
         }
     }
+
+    private void PrintGameState()
+    {
+        terminal.PrintText("sectionSeparator");
+        terminal.PrintLine(terminal.GetText("wave") + $"{gameEngine.waveNumber}");
+        terminal.PrintText("sectionSeparator");
+
+        terminal.PrintEntity(gameEngine.player);
+        terminal.PrintText("enemies");
+        terminal.PrintEntityList(gameEngine.monsters);
+    }
+    
 }

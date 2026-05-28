@@ -15,22 +15,27 @@ public class EndingWave : IGameEngine
     public void SetNextTurns()
     {
         if(gameEngine.playerLost)
-        {
-            //ask if he wants to leave or restart the game
-            gameEngine.InitGame();
-        }
+            AskRestart("playerDefeated");
         else
         {
-            // if the player had won, read the winning line
+            gameEngine.terminal.PrintLine(gameEngine.currentWave.victoryText);
             Wave? nextWave = gameEngine.currentWave.GetNextWave();
             if (nextWave == null)
             {
-                // ask the player if he wants to restart the game
-                gameEngine.InitGame();
+                AskRestart("gameCompleted");
                 return;
             }
             gameEngine.currentWave = nextWave;
             gameEngine.nextTurns = new BeginWave(gameEngine, gameEngine.currentWave);
         }
+    }
+
+    private void AskRestart(string messageKey)
+    {
+        bool playAgain = gameEngine.terminal.AskYesNo(messageKey);
+        if (playAgain)
+            gameEngine.InitGame();
+        else
+            Environment.Exit(0);
     }
 }

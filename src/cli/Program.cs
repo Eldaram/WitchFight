@@ -1,1 +1,1 @@
-﻿Console.WriteLine("Hello, World!");
+﻿new GameEngine(AdventureManager.Instance.LoadAdventure());

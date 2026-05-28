@@ -6,12 +6,6 @@ abstract public class Entity
     public int power;
     public Move? Attack;
 
-    public bool dammage(Entity target)
-    {
-        Attack?.Use(this, target);
-        return target.health <= 0;
-    }
-
     public abstract void TakeDamage(int amount, bool isTrueDamage = false, bool canDodge = true);
 
     public abstract Entity? ChooseAction(IEnumerable<Entity> possibleTargets);

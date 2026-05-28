@@ -11,12 +11,14 @@ public class BeginWave : IGameEngine
 
     public void RunTurn()
     {
-        // Add a line to launch the begining of the wave
+        gameEngine.terminal.PrintLine(wave.openingText);
 
         gameEngine.monsters = wave.monsters;
         gameEngine.currentMonsterIndex = 0;
         gameEngine.turnIndex = 0;
         gameEngine.waveNumber++;
+
+        gameEngine.player.ResetMoves();
     }
 
     public void SetNextTurns()

@@ -1,0 +1,47 @@
+{
+    "openingText": "xxx",
+    "victoryText": "xxx",
+    "monsters": [
+        {
+            "name": "Goblin",
+            "health": 100,
+            "power": 10,
+            "armor": 5
+        }
+    ],
+    "futureWaves": [
+        {
+            "openingText": "xxx",
+            "victoryText": "xxx",
+            "monsters": [
+                {
+                    "name": "Goblin",
+                    "health": 100,
+                    "power": 10,
+                    "armor": 5
+                },
+                {
+                    "name": "Goblin",
+                    "health": 100,
+                    "power": 10,
+                    "armor": 5
+                }
+            ],
+            "futureWaves": [
+                {
+                    "openingText": "xxx",
+                    "victoryText": "xxx",
+                    "monsters": [
+                        {
+                            "name": "Troll",
+                            "health": 150,
+                            "power": 15,
+                            "armor": 8
+                        }
+                    ],
+                    "futureWaves": []
+                }
+            ]
+        }
+    ]
+}
