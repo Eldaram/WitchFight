@@ -6,7 +6,7 @@ public class Player : Entity
     public string? playerClass;
     public TerminalManager terminal = TerminalManager.Instance;
 
-    private double ENDWAVE_HEAL_PERCENTAGE = 0.2;
+    const double ENDWAVE_HEAL_PERCENTAGE = 0.2;
 
     public override void TakeDamage(int amount, bool isTrueDamage = false, bool canDodge = true)
     {
@@ -25,7 +25,7 @@ public class Player : Entity
         while (true)
         {
             playerMove = terminal.AskMove(moveList);
-            if (playerMove != null && playerMove.maxUses != 0 && playerMove.cooldown == 0) // TODO review
+            if (playerMove != null && playerMove.remainingUses != 0 && playerMove.remainingCooldown == 0)
                 break;
             terminal.PrintText("invalidMove");
         }
@@ -62,8 +62,8 @@ public class Player : Entity
     {
         foreach (var move in GetAllMoves())
         {
-            if (move.cooldown > 0)
-                move.cooldown--;
+            if (move.remainingCooldown > 0)
+                move.remainingCooldown--;
         }
     }
 
@@ -71,7 +71,7 @@ public class Player : Entity
     {
         foreach (var move in GetAllMoves())
         {
-            move.cooldown = 0;
+            move.remainingCooldown = 0;
             move.remainingUses = move.maxUses;
         }
     }

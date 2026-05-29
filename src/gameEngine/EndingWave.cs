@@ -12,7 +12,7 @@ public class EndingWave : IGameEngine
         return;
     }
 
-    public void SetNextTurns()
+    public void SetNextTurn()
     {
         if(gameEngine.playerLost)
             AskRestart("playerDefeated");
@@ -26,7 +26,7 @@ public class EndingWave : IGameEngine
                 return;
             }
             gameEngine.currentWave = nextWave;
-            gameEngine.nextTurns = new BeginWave(gameEngine, gameEngine.currentWave);
+            gameEngine.nextTurn = new BeginWave(gameEngine, gameEngine.currentWave);
         }
     }
 

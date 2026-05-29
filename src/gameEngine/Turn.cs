@@ -1,8 +1,3 @@
-// A turn can be either 
-// An entity's turn to act
-// The intialisation
-// The end of a wave
-
 public class Turn : IGameEngine
 {
     public TerminalManager terminal = TerminalManager.Instance;
@@ -46,18 +41,18 @@ public class Turn : IGameEngine
         }
     }
 
-    public void SetNextTurns()
+    public void SetNextTurn()
     {
         gameEngine.turnIndex++;
 
         if (gameEngine.currentMonsterIndex < gameEngine.monsters.Count)
         {
-            gameEngine.nextTurns = new Turn(gameEngine, gameEngine.monsters[gameEngine.currentMonsterIndex]);
+            gameEngine.nextTurn = new Turn(gameEngine, gameEngine.monsters[gameEngine.currentMonsterIndex]);
             gameEngine.currentMonsterIndex++;
         }
         else
         {
-            gameEngine.nextTurns = new Turn(gameEngine, gameEngine.player);
+            gameEngine.nextTurn = new Turn(gameEngine, gameEngine.player);
             gameEngine.currentMonsterIndex = 0;
         }
     }

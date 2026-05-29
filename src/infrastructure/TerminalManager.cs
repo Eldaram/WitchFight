@@ -11,15 +11,9 @@ public sealed class TerminalManager
     public string GetText(string key)
     {
         if (texts.TryGetValue(key, out string? value))
-        {
             return value;
-        }
         else
-        {
-            PrintLine($"Error: Text key '{key}' not found in texts.json");
-            Environment.Exit(1);
-            return "";
-        }
+            throw new Exception($"Error: Text key '{key}' not found in texts.json");
     }
 
     public void PrintEntity(Entity entity)
@@ -47,9 +41,9 @@ public sealed class TerminalManager
 
     public void PrintMove(Move move)
     {
-        string cooldownText = move.cooldown > 0 ? $" ({GetText("cooldown")}: {move.cooldown})" : "";
-        string usesText = move.maxUses >= 0 ? $" ({GetText("remainingUses")}: {move.maxUses})" : "";
-        PrintLine($"{GetText(move.name)} {cooldownText} {usesText}");
+        string cooldownText = move.remainingCooldown > 0 ? $" ({GetText("cooldown")}: {move.remainingCooldown})" : "";
+        string usesText = move.remainingUses >= 0 ? $" ({GetText("remainingUses")}: {move.remainingUses})" : "";
+        PrintLine($"{GetText(move.name)}{cooldownText}{usesText}");
     }
 
     public void PrintMoveList(IEnumerable<Move> moves)
@@ -136,7 +130,6 @@ public sealed class TerminalManager
     public string ReadLine()
     {
         string input = Console.ReadLine() ?? "";
-        PrintLine("");
         return input;
     }
 }

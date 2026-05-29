@@ -1,6 +1,3 @@
-// Wave is a recursive object that contain
-// the current wave and every possible future wave.
-
 public class Wave
 {
     public List<Monster> monsters;
@@ -18,6 +15,6 @@ public class Wave
 
     public Wave? GetNextWave()
     {
-        return futureWaves.First();
+        return futureWaves.FirstOrDefault() ?? null;
     }
 }

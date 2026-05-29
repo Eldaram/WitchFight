@@ -21,8 +21,8 @@ public class BeginWave : IGameEngine
         gameEngine.player.ResetMoves();
     }
 
-    public void SetNextTurns()
+    public void SetNextTurn()
     {
-        gameEngine.nextTurns = new Turn(gameEngine, gameEngine.player);
+        gameEngine.nextTurn = new Turn(gameEngine, gameEngine.player);
     }
 }

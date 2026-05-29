@@ -8,7 +8,7 @@ public class GameEngine : IGameEngine
     };
 
     public IGameEngine currentTurn;
-    public IGameEngine nextTurns = null!; 
+    public IGameEngine nextTurn = null!; 
     public List<Monster> monsters;
     public Wave initialWave;
     public Wave currentWave;
@@ -25,13 +25,13 @@ public class GameEngine : IGameEngine
 
         initialWave = wave;
         InitGame();
-        currentTurn = nextTurns;
+        currentTurn = nextTurn;
 
         while (true)
         {
-            SetNextTurns();
+            SetNextTurn();
             RunTurn();
-            currentTurn = nextTurns;
+            currentTurn = nextTurn;
         }
     }
 
@@ -40,14 +40,14 @@ public class GameEngine : IGameEngine
         currentTurn.RunTurn();
     }
 
-    public void SetNextTurns()
+    public void SetNextTurn()
     {
-        currentTurn.SetNextTurns();
+        currentTurn.SetNextTurn();
     }
 
     public void EndWave(bool isPlayerDead)
     {
-        nextTurns = new EndingWave(this);
+        nextTurn = new EndingWave(this);
         playerLost = isPlayerDead;
     }
 
@@ -57,7 +57,7 @@ public class GameEngine : IGameEngine
         PlayerConfiguration();
         currentWave = initialWave;
 
-        nextTurns = new BeginWave(this, currentWave);
+        nextTurn = new BeginWave(this, currentWave);
     }
 
     private void PlayerConfiguration()

@@ -1,9 +1,9 @@
 static class MoveLibrary
 {
-    static double WARRIOR_MULTIPLIER = 1.5;
-    static int MAGE_DAMAGE = 20;
-    static double ROGUE_CRIT_CHANCE = 0.3;
-    static int HEAL_AMOUNT = 25;
+    const double WARRIOR_MULTIPLIER = 1.5;
+    const int MAGE_DAMAGE = 20;
+    const double ROGUE_CRIT_CHANCE = 0.3;
+    const int HEAL_AMOUNT = 25;
 
     public static void BasicAttack(Entity user, Entity? target)
     {

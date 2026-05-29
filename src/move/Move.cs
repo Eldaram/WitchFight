@@ -3,6 +3,7 @@ public class Move
     public string name;
     public int cooldown;
     public int maxUses;
+    const int INFINITE_USES = -1;
 
     public int remainingUses;
     public int remainingCooldown;
@@ -11,7 +12,7 @@ public class Move
 
     public Action<Entity, Entity?> Action;
 
-    public Move(string name, Action<Entity, Entity?> action, int cooldown = 0, int maxUses = -1, bool isSelfTargeting = false)
+    public Move(string name, Action<Entity, Entity?> action, int cooldown = 0, int maxUses = INFINITE_USES, bool isSelfTargeting = false)
     {
         this.name = name;
         this.cooldown = cooldown;

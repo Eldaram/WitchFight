@@ -21,5 +21,6 @@
     "invalidNumber": "Invalid. Please choose again.",
     "chooseTarget": "Choose your target",
     "playerDefeated": "You have been defeated! Do you want to try again?",
-    "playAgain": "Do you want to play again?"
+    "playAgain": "Do you want to play again?",
+    "invalidMove": "You cannot use that move right now. Please choose another."
 }

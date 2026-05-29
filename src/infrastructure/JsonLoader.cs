@@ -8,8 +8,7 @@ public class JsonLoader
         Dictionary<string, string>? result = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
         if (result == null || result.Count == 0)
         {
-            Console.WriteLine("Error loading json file: " + filePath);
-            Environment.Exit(1);
+            throw new Exception($"Error loading json file: {filePath}");
         }
         return result ?? new Dictionary<string, string>();
     }
@@ -20,8 +19,7 @@ public class JsonLoader
         Dictionary<string, object>? result = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonString);
         if (result == null || result.Count == 0)
         {
-            Console.WriteLine("Error loading json file: " + filePath);
-            Environment.Exit(1);
+            throw new Exception($"Error loading json file: {filePath}");
         }
         return ConvertDictionary(result);
     }
